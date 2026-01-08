@@ -1,0 +1,48 @@
+{
+  "task_name": "CHIP-CTC",
+  "task_description": "临床试验筛选标准短文本分类",
+  "num_classes": 44,
+
+  "data": {
+    "data_dir": "../data/CHIP-CTC/CHIP-CTC",
+    "train_file": "CHIP-CTC_train.json",
+    "dev_file": "CHIP-CTC_dev.json",
+    "test_file": "CHIP-CTC_test.json"
+  },
+
+  "models": {
+    "bert_models": [
+      {
+        "name": "bert-base-chinese",
+        "suffix": "base",
+        "weight": 0.3
+      },
+      {
+        "name": "hfl/chinese-roberta-wwm-ext",
+        "suffix": "roberta",
+        "weight": 0.4
+      },
+      {
+        "name": "hfl/chinese-macbert-base",
+        "suffix": "macbert",
+        "weight": 0.3
+      }
+    ]
+  },
+
+  "training": {
+    "epochs": 5,
+    "batch_size": 16,
+    "learning_rate": 2e-5,
+    "max_length": 128,
+    "warmup_steps": 500,
+    "use_class_weights": true
+  },
+
+  "output": {
+    "checkpoint_dir": "checkpoints",
+    "result_dir": "results",
+    "bert_checkpoint_dir": "checkpoints/bert",
+    "prediction_dir": "results/bert_predictions"
+  }
+}
